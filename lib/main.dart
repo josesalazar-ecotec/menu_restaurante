@@ -1,121 +1,210 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MenuApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MenuApp extends StatelessWidget {
+  const MenuApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'El Sabor Ecuatoriano',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFC0392B)),
+        useMaterial3: true,
+        textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MenuScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MenuScreen> createState() => _MenuScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MenuScreenState extends State<MenuScreen> {
+  bool _mostrarEspecial = false;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  static const _rojo = Color(0xFFC0392B);
+  static const _fondo = Color(0xFFFDF6EC);
+  static const _card = Color(0xFFFFFFFF);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: _fondo,
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: _rojo,
+        centerTitle: true,
+        title: Text(
+          '🍽️ El Sabor Ecuatoriano',
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: .center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            // Hero banner
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: _rojo,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  const Icon(Icons.restaurant, size: 64, color: Colors.white),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Bienvenido',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Comida casera con sazón ecuatoriana',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white70,
+                      fontSize: 13,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
+
+            const SizedBox(height: 24),
+
+            _seccion('🥗 Entradas'),
+            _itemMenu('Ceviche de camarón', 'Fresco, cítrico y picante', '\$4.50', Icons.set_meal),
+            _itemMenu('Patacones con queso', 'Crujientes y dorados', '\$3.00', Icons.breakfast_dining),
+
+            const SizedBox(height: 16),
+            _seccion('🍖 Platos Fuertes'),
+            _itemMenu('Seco de pollo', 'Con arroz, ensalada y maduro', '\$6.50', Icons.lunch_dining),
+            _itemMenu('Churrasco', 'Carne a la plancha con papas fritas', '\$8.00', Icons.dinner_dining),
+            _itemMenu('Fritada', 'Cerdo frito con mote y maduro', '\$7.00', Icons.restaurant_menu),
+
+            const SizedBox(height: 16),
+            _seccion('🥤 Bebidas'),
+            _itemMenu('Jugo natural', 'Naranja, mora o maracuyá', '\$1.50', Icons.local_drink),
+            _itemMenu('Limonada especial', 'Con hierbabuena y hielo', '\$2.00', Icons.emoji_food_beverage),
+
+            const SizedBox(height: 24),
+
+            // Botón especial
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () => setState(() => _mostrarEspecial = !_mostrarEspecial),
+                icon: Icon(
+                  _mostrarEspecial ? Icons.visibility_off : Icons.star,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  _mostrarEspecial ? 'Ocultar especial' : 'Ver plato especial del día',
+                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _rojo,
+                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            // Panel especial del día
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: _mostrarEspecial
+                  ? Container(
+                      key: const ValueKey('especial'),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFE8E8),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: _rojo, width: 1.5),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.star, color: _rojo, size: 32),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Plato del día',
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold, color: _rojo)),
+                                Text('Seco de pollo con arroz, ensalada y jugo',
+                                    style: GoogleFonts.poppins(fontSize: 13)),
+                                Text('\$5.99 — solo hoy',
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600, color: _rojo)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink(key: ValueKey('vacio')),
+            ),
+
+            const SizedBox(height: 30),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    );
+  }
+
+  Widget _seccion(String titulo) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Text(
+        titulo,
+        style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _itemMenu(String nombre, String descripcion, String precio, IconData icono) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: _card,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 6, offset: const Offset(0, 2)),
+        ],
+      ),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: const Color(0xFFFFE8E8),
+          child: Icon(icono, color: _rojo, size: 20),
+        ),
+        title: Text(nombre, style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 14)),
+        subtitle: Text(descripcion, style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey[600])),
+        trailing: Text(precio,
+            style: GoogleFonts.poppins(color: _rojo, fontWeight: FontWeight.bold, fontSize: 14)),
       ),
     );
   }
