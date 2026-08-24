@@ -31,3 +31,49 @@ Uso google_fonts 8.2.1 para aplicar la fuente Poppins en toda la interfaz. Se in
 ## Cómo ejecutar el proyecto
 
 Clonar el repositorio con git clone https://github.com/josesalazar-ecotec/menu_restaurante.git, entrar a la carpeta con cd menu_restaurante, instalar dependencias con flutter pub get y ejecutar con flutter run -d chrome para web o flutter run -d emulator-5554 para el emulador Android.
+
+## Capturas subidas
+01_flutter_doctor
+Resultado del comando flutter doctor en la terminal confirmando que Flutter 3.47.1 está instalado correctamente en Windows.
+
+02_proyecto_vscode
+Explorador de VS Code mostrando la estructura completa del proyecto menu_restaurante con todas sus carpetas generadas.
+
+03_app_pantalla_principal
+Aplicación ejecutándose en Chrome mostrando el banner de bienvenida y las secciones del menú.
+
+04_app_boton
+Panel del plato especial visible en Chrome tras presionar el botón interactivo de la aplicación.
+
+05_repositorio_github
+Repositorio público creado en GitHub con el nombre menu_restaurante y visibilidad pública.
+
+08_android_license
+Pantalla de aceptación de licencias del Android SDK durante la configuración inicial de Android Studio.
+
+09_android_studio_welcome
+Pantalla de bienvenida de Android Studio Quail 3 ya instalado y listo para usar.
+
+11_add_device
+Asistente de creación de dispositivo virtual con el Pixel 8 seleccionado como emulador.
+
+12_configure_pixel8
+Configuración final del emulador Pixel 8 con sistema Android 17 API 37 listo para descargar.
+
+14_emulador_corriendo
+Emulador Pixel 8 encendido mostrando la pantalla de inicio de Android correctamente.
+
+16_app_emulador_scroll
+Aplicación ejecutándose en el emulador mostrando la sección de bebidas y el botón principal.
+
+17_app_emulador_boton
+Plato especial del día visible en el emulador tras presionar el botón interactivo de la app.
+
+18_instalacion_google_fonts
+Terminal mostrando la instalación exitosa del paquete google_fonts 8.2.1 con sus dependencias.
+
+19_repositorio_github
+Repositorio en GitHub con el historial de commits del proyecto completamente visible.
+
+20_pubspec_google_fonts
+Archivo pubspec.yaml abierto en VS Code con google_fonts agregado en la sección de dependencias.
