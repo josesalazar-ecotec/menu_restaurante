@@ -169,6 +169,46 @@ class _MenuScreenState extends State<MenuScreen> {
                   : const SizedBox.shrink(key: ValueKey('vacio')),
             ),
 
+                        const SizedBox(height: 24),
+
+            // Sección horarios
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 6, offset: const Offset(0, 2)),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('📍 Información del restaurante',
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 15)),
+                  const SizedBox(height: 10),
+                  Row(children: [
+                    const Icon(Icons.access_time, color: Color(0xFFC0392B), size: 18),
+                    const SizedBox(width: 8),
+                    Text('Lun - Sab: 8:00 AM – 9:00 PM', style: GoogleFonts.poppins(fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 6),
+                  Row(children: [
+                    const Icon(Icons.location_on, color: Color(0xFFC0392B), size: 18),
+                    const SizedBox(width: 8),
+                    Text('Av. Principal 123, Guayaquil', style: GoogleFonts.poppins(fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 6),
+                  Row(children: [
+                    const Icon(Icons.phone, color: Color(0xFFC0392B), size: 18),
+                    const SizedBox(width: 8),
+                    Text('+593 99 123 4567', style: GoogleFonts.poppins(fontSize: 13)),
+                  ]),
+                ],
+              ),
+            ),
+
             const SizedBox(height: 30),
           ],
         ),
@@ -193,7 +233,7 @@ class _MenuScreenState extends State<MenuScreen> {
         color: _card,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 6, offset: const Offset(0, 2)),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 6, offset: const Offset(0, 2)),
         ],
       ),
       child: ListTile(
