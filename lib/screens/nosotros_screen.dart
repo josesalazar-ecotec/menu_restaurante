@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NosotrosScreen extends StatelessWidget {
   const NosotrosScreen({super.key});
@@ -140,6 +141,47 @@ class NosotrosScreen extends StatelessWidget {
               ],
             ), // Row valores
 
+            const SizedBox(height: 24),
+            const Divider(),
+            const SizedBox(height: 16),
+
+            // Sección de redes sociales con url_launcher
+            Text(
+              'Síguenos en redes',
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _botonRed(
+                  icono: Icons.chat,
+                  label: 'WhatsApp',
+                  color: const Color(0xFF25D366),
+                  url: 'https://wa.me/593991234567',
+                ),
+                const SizedBox(width: 20),
+                _botonRed(
+                  icono: Icons.camera_alt,
+                  label: 'Instagram',
+                  color: const Color(0xFFE1306C),
+                  url: 'https://instagram.com/elsaborecuatoriano',
+                ),
+                const SizedBox(width: 20),
+                _botonRed(
+                  icono: Icons.facebook,
+                  label: 'Facebook',
+                  color: const Color(0xFF1877F2),
+                  url: 'https://facebook.com/elsaborecuatoriano',
+                ),
+              ],
+            ),
+
             const SizedBox(height: 30),
 
           ],
@@ -202,5 +244,36 @@ class NosotrosScreen extends StatelessWidget {
         ],
       ), // Column
     ); // Container
+  }
+
+  // Widget reutilizable para botones de redes sociales
+  Widget _botonRed({
+    required IconData icono,
+    required String label,
+    required Color color,
+    required String url,
+  }) {
+    return GestureDetector(
+      onTap: () async {
+        final uri = Uri.parse(url);
+        if (await canLaunchUrl(uri)) {
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        }
+      },
+      child: Column(
+        children: [
+          CircleAvatar(
+            backgroundColor: color,
+            radius: 24,
+            child: Icon(icono, color: Colors.white, size: 22),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            label,
+            style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    );
   }
 }
