@@ -19,7 +19,6 @@ class MenuApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      // Ahora inicio con la pantalla de splash animada
       home: const SplashScreen(),
     );
   }
