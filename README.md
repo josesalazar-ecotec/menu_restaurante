@@ -77,3 +77,53 @@ Repositorio en GitHub con el historial de commits del proyecto completamente vis
 
 20_pubspec_google_fonts
 Archivo pubspec.yaml abierto en VS Code con google_fonts agregado en la sección de dependencias.
+
+## Actividad Integradora 2 — Navegación y Nuevos Widgets
+
+Fecha: 30 de agosto de 2026
+
+## Descripción
+
+Continúo mejorando la aplicación desarrollada en la Actividad Integradora 1. Agrego navegación entre cuatro pantallas, imágenes de los platos generadas con inteligencia artificial, un carrito de pedidos interactivo, cambio de ícono de la aplicación y el paquete url_launcher. La aplicación mantiene la identidad visual de El Sabor Ecuatoriano con la paleta de colores rojo y crema.
+
+## Nuevas funcionalidades
+
+Implemento navegación fluida entre cuatro pantallas usando Navigator.push y Navigator.pop. Agrego un modelo de datos Plato para centralizar la información de cada plato del menú. Incorporo imágenes reales de los platos en la pantalla de menú y detalle. El carrito permite agregar, incrementar, decrementar y eliminar platos con confirmación mediante AlertDialog. El botón de favoritos en cada plato cambia de estado con setState. Los filtros de categoría en la pantalla de menú actualizan la lista en tiempo real.
+
+## Pantallas desarrolladas
+
+HomeScreen es la pantalla principal que muestra el logo del restaurante y tres botones de navegación hacia el menú, el carrito y la sección de nosotros. MenuScreen muestra la lista completa de platos con imágenes, precios y un sistema de filtros por categoría. DetalleScreen presenta la información completa de cada plato con dos vistas de imagen, contador de porciones y botón para agregar al carrito con SnackBar de confirmación. NosotrosScreen muestra el logo, descripción del restaurante, información de contacto y los valores institucionales. CarritoScreen permite gestionar los pedidos con controles de cantidad, eliminación con AlertDialog y confirmación del pedido.
+
+## Widgets utilizados
+
+Uso ListView.builder para la lista de platos y el carrito, Card para cada tarjeta de plato, Image.asset para mostrar las imágenes, IconButton para los favoritos y controles de cantidad, ElevatedButton para confirmar pedidos y navegar, FloatingActionButton para limpiar el carrito, Padding y SizedBox para el espaciado, Expanded para distribuir el espacio, Container para el banner y los filtros, CircleAvatar para los íconos de contacto y Divider para separar secciones.
+
+## Interacciones implementadas
+
+La navegación entre pantallas usa Navigator.push con MaterialPageRoute. El ícono de favorito cambia entre lleno y vacío con setState al tocarlo. Los filtros de categoría actualizan la lista de platos en tiempo real. El contador de porciones en el detalle incrementa y decrementa el precio total. El botón de agregar al carrito muestra un SnackBar de confirmación. La eliminación de un plato del carrito muestra un AlertDialog de confirmación. El botón de confirmar pedido muestra un AlertDialog y vacía el carrito.
+
+## Funcionalidad con setState
+
+Implemento setState en tres lugares principales. En MenuScreen actualizo la categoría seleccionada para filtrar los platos y el estado de favorito de cada plato. En DetalleScreen controlo el contador de porciones y el cambio entre las dos vistas de imagen del plato. En CarritoScreen manejo el incremento, decremento y eliminación de items, además de vaciar el carrito al confirmar el pedido.
+
+## Paquete externo
+
+Instalo url_launcher para abrir enlaces, correos y WhatsApp directamente desde la aplicación. También instalo flutter_launcher_icons para cambiar el ícono de la app en Android e iOS usando la imagen icon_app.png generada con inteligencia artificial.
+
+## Personalización
+
+El nombre de la aplicación es El Sabor Ecuatoriano definido en el MaterialApp. El ícono de la app fue generado con inteligencia artificial mostrando un tenedor y cuchara cruzados sobre fondo rojo con el nombre del restaurante, y se aplica en Android e iOS mediante flutter_launcher_icons. El logotipo aparece en la pantalla de inicio y en la pantalla de Nosotros. La paleta de colores mantiene el rojo #C0392B como color principal y el crema #FDF6EC como fondo.
+
+## Capturas integradora 2
+
+01_home — Pantalla principal con logo y botones de navegación hacia las demás secciones.
+02_nosotros — Pantalla de información del restaurante con logo, descripción y datos de contacto.
+03_menu_todas — Pantalla de menú mostrando todos los platos con imágenes y filtros de categoría.
+04_menu_platos_fuertes — Filtro de platos fuertes activo mostrando solo esa categoría.
+05_detalle_plato — Detalle de un plato con imagen, descripción, contador de porciones y botón de carrito.
+06_carrito — Carrito de pedidos con lista de platos, controles de cantidad y total.
+07_icono_app — Ícono personalizado de la aplicación generado con inteligencia artificial.
+
+## Instrucciones para ejecutar
+
+Clonar el repositorio con git clone https://github.com/josesalazar-ecotec/menu_restaurante.git, entrar a la carpeta con cd menu_restaurante, instalar dependencias con flutter pub get y ejecutar con flutter run -d chrome para web o flutter run -d emulator-5554 para el emulador Android.
