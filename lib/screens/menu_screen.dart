@@ -15,12 +15,21 @@ class _MenuScreenState extends State<MenuScreen> {
 
   // Empiezo mostrando todas las categorías por defecto
   String _categoriaSeleccionada = 'Todas';
+  String _busqueda = '';
   final List<String> _categorias = ['Todas', 'Entradas', 'Platos Fuertes', 'Bebidas'];
 
-  // Devuelvo solo los platos que corresponden a la categoría activa
+  // Devuelvo solo los platos que corresponden a la categoría y búsqueda activa
   List<Plato> get _platosFiltrados {
-    if (_categoriaSeleccionada == 'Todas') return platos;
-    return platos.where((p) => p.categoria == _categoriaSeleccionada).toList();
+    List<Plato> resultado = platos;
+    if (_categoriaSeleccionada != 'Todas') {
+      resultado = resultado.where((p) => p.categoria == _categoriaSeleccionada).toList();
+    }
+    if (_busqueda.isNotEmpty) {
+      resultado = resultado
+          .where((p) => p.nombre.toLowerCase().contains(_busqueda.toLowerCase()))
+          .toList();
+    }
+    return resultado;
   }
 
   static const _rojo = Color(0xFFC0392B);
@@ -47,6 +56,27 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
       body: Column(
         children: [
+
+          // Barra de búsqueda para filtrar platos por nombre
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+            child: TextField(
+              onChanged: (valor) => setState(() => _busqueda = valor),
+              decoration: InputDecoration(
+                hintText: 'Buscar plato...',
+                hintStyle: GoogleFonts.poppins(fontSize: 13),
+                prefixIcon: const Icon(Icons.search, color: Color(0xFFC0392B)),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: const EdgeInsets.symmetric(vertical: 0),
+              ),
+              style: GoogleFonts.poppins(fontSize: 13),
+            ),
+          ),
 
           // Barra de filtros horizontal – el usuario toca una categoría
           // y la lista se actualiza automáticamente con setState
