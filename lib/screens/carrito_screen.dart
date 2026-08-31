@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/plato.dart';
+import 'package:intl/intl.dart';
 
 class CarritoScreen extends StatefulWidget {
   const CarritoScreen({super.key});
@@ -41,6 +42,7 @@ class _CarritoScreenState extends State<CarritoScreen> {
   }
 
   // Confirmo el pedido con un AlertDialog y vacío el carrito
+   // Confirmo el pedido con un AlertDialog y vacío el carrito
   void _confirmarPedido() {
     showDialog(
       context: context,
@@ -48,7 +50,7 @@ class _CarritoScreenState extends State<CarritoScreen> {
         title: Text('¡Pedido confirmado!',
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
         content: Text(
-          'Tu pedido por \$${_total.toStringAsFixed(2)} será entregado en 20 minutos.',
+          'Tu pedido por \$${_total.toStringAsFixed(2)} será entregado en 20 minutos.\n\nFecha: ${DateFormat('dd/MM/yyyy – hh:mm a').format(DateTime.now())}',
           style: GoogleFonts.poppins(),
         ),
         actions: [
@@ -65,7 +67,6 @@ class _CarritoScreenState extends State<CarritoScreen> {
       ),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
