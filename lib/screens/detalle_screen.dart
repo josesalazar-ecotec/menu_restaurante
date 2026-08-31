@@ -75,12 +75,15 @@ class _DetalleScreenState extends State<DetalleScreen> {
               },
               child: Stack(
                 children: [
-                  // Imagen del plato
-                  Image.asset(
-                    imagenActual,
-                    width: double.infinity,
-                    height: 260,
-                    fit: BoxFit.cover,
+                  // Imagen del plato con animación Hero
+                  Hero(
+                    tag: 'plato-${plato.id}',
+                    child: Image.asset(
+                      imagenActual,
+                      width: double.infinity,
+                      height: 260,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   // Indicador de que hay segunda vista disponible
                   if (plato.imagen2.isNotEmpty)
@@ -95,7 +98,7 @@ class _DetalleScreenState extends State<DetalleScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
-                          _mostrandoImagen2 ? 'Vista 2 — toca para cambiar' : 'Vista 1 — toca para cambiar',
+                          _mostrandoImagen2 ? 'Vista 2 – toca para cambiar' : 'Vista 1 – toca para cambiar',
                           style: GoogleFonts.poppins(
                               color: Colors.white, fontSize: 11),
                         ),
@@ -213,7 +216,7 @@ class _DetalleScreenState extends State<DetalleScreen> {
                   const SizedBox(height: 20),
 
                   // Botón para agregar al carrito con SnackBar de confirmación
-                  SizedBox(                  
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
                       onPressed: () {

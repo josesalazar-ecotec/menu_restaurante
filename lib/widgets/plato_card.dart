@@ -27,16 +27,20 @@ class PlatoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Row(
           children: [
+            // Imagen con animación Hero para transición al detalle
             ClipRRect(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              child: Image.asset(
-                plato.imagen,
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: 'plato-${plato.id}',
+                child: Image.asset(
+                  plato.imagen,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Expanded(
