@@ -183,11 +183,13 @@ class _CarritoScreenState extends State<CarritoScreen> {
             ), // Column
 
       // FloatingActionButton para limpiar el carrito
-      floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton(
         backgroundColor: _rojo,
         onPressed: () => setState(() => _carrito.clear()),
         child: const Icon(Icons.delete_sweep, color: Colors.white),
       ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
 
     ); // Scaffold
   }

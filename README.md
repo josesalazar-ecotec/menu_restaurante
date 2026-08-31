@@ -1,9 +1,9 @@
-# Menú de Restaurante — Flutter
+# Menú de Restaurante – Flutter
 
 Autor: Jose Salazar Campodonico
 Materia: Programación IV
 Período: Bimestre 4 - 2026
-Actividad: Integradora 1
+Actividad: Integradora 1 y 2
 Repositorio: https://github.com/josesalazar-ecotec/menu_restaurante
 
 ## Descripción
@@ -78,11 +78,11 @@ Repositorio en GitHub con el historial de commits del proyecto completamente vis
 20_pubspec_google_fonts
 Archivo pubspec.yaml abierto en VS Code con google_fonts agregado en la sección de dependencias.
 
-## Actividad Integradora 2 — Navegación y Nuevos Widgets
+## Actividad Integradora 2 – Navegación y Nuevos Widgets
 
 Fecha: 30 de agosto de 2026
 
-## Descripción
+## Descripción Integradora 2
 
 Continúo mejorando la aplicación desarrollada en la Actividad Integradora 1. Agrego navegación entre cuatro pantallas, imágenes de los platos generadas con inteligencia artificial, un carrito de pedidos interactivo, cambio de ícono de la aplicación y el paquete url_launcher. La aplicación mantiene la identidad visual de El Sabor Ecuatoriano con la paleta de colores rojo y crema.
 
@@ -114,16 +114,24 @@ Instalo url_launcher para abrir enlaces, correos y WhatsApp directamente desde l
 
 El nombre de la aplicación es El Sabor Ecuatoriano definido en el MaterialApp. El ícono de la app fue generado con inteligencia artificial mostrando un tenedor y cuchara cruzados sobre fondo rojo con el nombre del restaurante, y se aplica en Android e iOS mediante flutter_launcher_icons. El logotipo aparece en la pantalla de inicio y en la pantalla de Nosotros. La paleta de colores mantiene el rojo #C0392B como color principal y el crema #FDF6EC como fondo.
 
+## Mejoras adicionales Integradora 2
+
+Extraigo el widget PlatoCard como componente reutilizable en lib/widgets/plato_card.dart para mantener el código organizado y evitar duplicación. Agrego una barra de búsqueda en MenuScreen que filtra los platos por nombre en tiempo real combinándose con los filtros de categoría existentes. Implemento animaciones Hero entre la imagen del plato en la lista y la vista de detalle para lograr una transición visual fluida al navegar. Agrego un badge numérico en el botón del carrito en HomeScreen que muestra la cantidad de platos disponibles usando el widget Badge de Material 3. Creo una pantalla de splash animada con FadeTransition y ScaleTransition que muestra el logo y nombre del restaurante durante 3 segundos antes de navegar al home. Incorporo botones de redes sociales en NosotrosScreen con enlaces a WhatsApp, Instagram y Facebook usando url_launcher para abrir las aplicaciones externas.
+
+## Estructura del proyecto
+
+lib/main.dart contiene el MaterialApp con el tema global y apunta a SplashScreen como pantalla inicial. lib/models/plato.dart define el modelo Plato y la lista global de platos del restaurante. lib/screens/ contiene splash_screen.dart, home_screen.dart, menu_screen.dart, detalle_screen.dart, nosotros_screen.dart y carrito_screen.dart. lib/widgets/plato_card.dart contiene el widget reutilizable para las tarjetas de platos en el menú.
+
 ## Capturas integradora 2
 
-01_home — Pantalla principal con logo y botones de navegación hacia las demás secciones.
-02_nosotros — Pantalla de información del restaurante con logo, descripción y datos de contacto.
-03_menu_todas — Pantalla de menú mostrando todos los platos con imágenes y filtros de categoría.
-04_menu_platos_fuertes — Filtro de platos fuertes activo mostrando solo esa categoría.
-05_detalle_plato — Detalle de un plato con imagen, descripción, contador de porciones y botón de carrito.
-06_carrito — Carrito de pedidos con lista de platos, controles de cantidad y total.
-07_icono_app — Ícono personalizado de la aplicación generado con inteligencia artificial.
+01_home – Pantalla principal con logo y botones de navegación hacia las demás secciones.
+02_nosotros – Pantalla de información del restaurante con logo, descripción y datos de contacto.
+03_menu_todas – Pantalla de menú mostrando todos los platos con imágenes y filtros de categoría.
+04_menu_platos_fuertes – Filtro de platos fuertes activo mostrando solo esa categoría.
+05_detalle_plato – Detalle de un plato con imagen, descripción, contador de porciones y botón de carrito.
+06_carrito – Carrito de pedidos con lista de platos, controles de cantidad y total.
+07_icono_app – Ícono personalizado de la aplicación generado con inteligencia artificial.
 
 ## Instrucciones para ejecutar
 
-Clonar el repositorio con git clone https://github.com/josesalazar-ecotec/menu_restaurante.git, entrar a la carpeta con cd menu_restaurante, instalar dependencias con flutter pub get y ejecutar con flutter run -d chrome para web o flutter run -d emulator-5554 para el emulador Android.
+Clonar el repositorio con git clone https://github.com/josesalazar-ecotec/menu_restaurante.git, entrar a la carpeta con cd menu_restaurante, instalar dependencias con flutter pub get y ejecutar con flutter run -d chrome para web o flutter run -d emulator-5554 para el emulador Android. Para lanzar el emulador primero ejecutar flutter emulators --launch Pixel_8 y esperar a que arranque antes de correr la app.
