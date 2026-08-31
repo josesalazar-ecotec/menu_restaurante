@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../models/plato.dart';
 import 'menu_screen.dart';
 import 'nosotros_screen.dart';
 import 'carrito_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  // Cuento los platos disponibles para mostrar en el badge del carrito
+  int get _itemsEnCarrito => platos.length;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +80,7 @@ class HomeScreen extends StatelessWidget {
               titulo: 'Mi Carrito',
               subtitulo: 'Revisa tus pedidos',
               destino: const CarritoScreen(),
+              badge: _itemsEnCarrito,
             ),
             const SizedBox(height: 16),
             _botonNavegacion(
@@ -91,15 +102,26 @@ class HomeScreen extends StatelessWidget {
     required String titulo,
     required String subtitulo,
     required Widget destino,
+    int badge = 0,
   }) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: const Color(0xFFFFE8E8),
-          child: Icon(icono, color: const Color(0xFFC0392B)),
-        ),
+        leading: badge > 0
+            ? Badge(
+                label: Text('$badge',
+                    style: GoogleFonts.poppins(
+                        fontSize: 10, color: Colors.white)),
+                child: CircleAvatar(
+                  backgroundColor: const Color(0xFFFFE8E8),
+                  child: Icon(icono, color: const Color(0xFFC0392B)),
+                ),
+              )
+            : CircleAvatar(
+                backgroundColor: const Color(0xFFFFE8E8),
+                child: Icon(icono, color: const Color(0xFFC0392B)),
+              ),
         title: Text(titulo,
             style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
         subtitle: Text(subtitulo,
