@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/plato.dart';
-import 'detalle_screen.dart';
 import '../widgets/plato_card.dart';
+import 'detalle_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -48,7 +48,7 @@ class _MenuScreenState extends State<MenuScreen> {
       body: Column(
         children: [
 
-          // Barra de filtros horizontal — el usuario toca una categoría
+          // Barra de filtros horizontal – el usuario toca una categoría
           // y la lista se actualiza automáticamente con setState
           Container(
             height: 50,
@@ -88,8 +88,7 @@ class _MenuScreenState extends State<MenuScreen> {
             ),
           ), // Container filtros
 
-          // Lista principal de platos — uso ListView.builder para
-          // no renderizar todos los elementos de una vez
+          // Lista principal de platos usando el widget reutilizable PlatoCard
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
