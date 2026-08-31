@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/plato.dart';
 import 'detalle_screen.dart';
+import '../widgets/plato_card.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -96,109 +97,18 @@ class _MenuScreenState extends State<MenuScreen> {
               itemBuilder: (context, index) {
                 final plato = _platosFiltrados[index];
 
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 12),
-                  elevation: 3,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: InkWell(
-                    // Al tocar la tarjeta navego al detalle del plato
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => DetalleScreen(plato: plato),
-                      ),
+                return PlatoCard(
+                  plato: plato,
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => DetalleScreen(plato: plato),
                     ),
-                    borderRadius: BorderRadius.circular(12),
-                    child: Row(
-                      children: [
-
-                        // Imagen del plato con esquinas redondeadas a la izquierda
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            bottomLeft: Radius.circular(12),
-                          ),
-                          child: Image.asset(
-                            plato.imagen,
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ), // ClipRRect imagen
-
-                        // Información del plato: nombre, descripción, precio y favorito
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-
-                                Text(
-                                  plato.nombre,
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-
-                                const SizedBox(height: 4),
-
-                                // Limito la descripción a 2 líneas para no romper el diseño
-                                Text(
-                                  plato.descripcion,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 11,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-
-                                const SizedBox(height: 8),
-
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-
-                                    // Precio formateado con 2 decimales
-                                    Text(
-                                      '\$${plato.precio.toStringAsFixed(2)}',
-                                      style: GoogleFonts.poppins(
-                                        color: _rojo,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-
-                                    // Corazón que cambia entre lleno y vacío con setState
-                                    IconButton(
-                                      icon: Icon(
-                                        plato.esFavorito
-                                            ? Icons.favorite
-                                            : Icons.favorite_border,
-                                        color: _rojo,
-                                        size: 20,
-                                      ),
-                                      onPressed: () => setState(
-                                        () => plato.esFavorito = !plato.esFavorito,
-                                      ),
-                                    ),
-
-                                  ],
-                                ), // Row precio y favorito
-
-                              ],
-                            ), // Column info
-                          ), // Padding
-                        ), // Expanded info
-
-                      ],
-                    ), // Row card
-                  ), // InkWell
-                ); // Card
+                  ),
+                  onFavoritoToggle: () => setState(
+                    () => plato.esFavorito = !plato.esFavorito,
+                  ),
+                );
               },
             ), // ListView.builder
           ), // Expanded
